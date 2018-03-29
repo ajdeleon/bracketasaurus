@@ -2,6 +2,7 @@
   "name": "bracketasaurus",
   "version": "1.0.0",
   "description": "",
+  "author": "AJ de Leon and Keith Evans",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/ajdeleon/bracketasaurus.git"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ajdeleon/bracketasaurus/issues"
