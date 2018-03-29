@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <ul>
+        <li>Bracketasaurus</li>
+        <li id="login"><a href="">Login</a></li>
+      </ul>
     </header>
     <main>
       <img src="./assets/logo.png" alt="Vue.js PWA">
@@ -17,6 +20,7 @@ export default {
 </script>
 
 <style>
+/* #35495e */
 body {
   margin: 0;
 }
@@ -28,6 +32,22 @@ body {
   color: #2c3e50;
 }
 
+#login {
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+#login a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+#login a:hover {
+  color:#42b883;
+  transition: color 0.4s;
+}
+
 main {
   text-align: center;
   margin-top: 40px;
@@ -36,13 +56,13 @@ main {
 header {
   margin: 0;
   height: 56px;
-  padding: 0 16px 0 24px;
+  padding: 0 24px 0 24px;
   background-color: #35495E;
   color: #ffffff;
 }
 
-header span {
-  display: block;
+header ul {
+  display: flex;
   position: relative;
   font-size: 20px;
   line-height: 1;
@@ -50,5 +70,6 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+  list-style-type: none;
 }
 </style>
