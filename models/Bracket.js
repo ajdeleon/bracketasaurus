@@ -1,6 +1,6 @@
 const sequelize = require('/DBConnect.js');
 
-const Bracket = sequelize.define('user', {
+const Bracket = sequelize.define('bracket', {
   name: {
     type: sequelize.STRING,
     allowNull: false
