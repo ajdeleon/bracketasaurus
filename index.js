@@ -8,20 +8,31 @@ require('./services/passport')
 
 const sequelize = new Sequelize(keys.dbname, keys.dbuser, keys.dbpassword, {
   dialect: 'mysql',
-  host: keys.endpoint,
-  port: keys.port,
+  host: "127.0.0.1",
+  port: 3306,
+  operatorsAliases: false,
 })
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+const User = sequelize.define('user', {
+  googleId: Sequelize.TEXT
+})
 
+sequelize.sync()
+.then(() => {
+  User.create({
+    googleId: 'fjkldffsasdfjklghjkghjdhfgj'
+  })
+})
 const app = express()
+
+// sequelize
+// .authenticate()
+// .then(() => {
+//   console.log('Connection has been established successfully.');
+// })
+// .catch(err => {
+//   console.error('Unable to connect to the database:', err);
+// });
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
