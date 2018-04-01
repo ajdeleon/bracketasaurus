@@ -6,13 +6,20 @@ const keys = require('./config/keys')
 const Sequelize = require('sequelize')
 require('./services/passport')
 
-const sequelize = new Sequelize('test', 'aj', 'password', {
-  dialect: 'mysql'
+const sequelize = new Sequelize(keys.dbname, keys.dbuser, keys.dbpassword, {
+  dialect: 'mysql',
+  host: keys.endpoint,
+  port: keys.port,
 })
 
-const User = sequelize.define('user', {
-  googleId: Sequelize.TEXT
-})
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 const app = express()
 
