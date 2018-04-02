@@ -8,8 +8,8 @@ require('./services/passport')
 
 const sequelize = new Sequelize(keys.dbname, keys.dbuser, keys.dbpassword, {
   dialect: 'mysql',
-  host: "127.0.0.1",
-  port: 3306,
+  host: "localhost",
+  port: 8889,
   operatorsAliases: false,
 })
 
@@ -17,12 +17,74 @@ const User = sequelize.define('user', {
   googleId: Sequelize.TEXT
 })
 
-sequelize.sync()
-.then(() => {
-  User.create({
-    googleId: 'fjkldffsasdfjklghjkghjdhfgj'
-  })
+const Bracket = sequelize.define('bracket', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  size: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      isInt: {
+        msg: "Bracket size must be an integer."
+      },
+      isDivisibleByFour(value) {
+        if (parseInt(value) % 4 !== 0) {
+          throw new Error("Your bracket size must be divisible by 4.");
+        }
+      }
+    }
+  },
+  description: Sequelize.TEXT,
+  //createdBy,
+  //winner
 })
+
+const Competitor = sequelize.define('competitor', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: Sequelize.TEXT,
+  ranking: Sequelize.INTEGER
+})
+
+const Match = sequelize.define('match', {
+  round: Sequelize.INTEGER
+})
+
+const BracketCompetitor = sequelize.define('bracket_competitor', {
+  //bracketId,
+  //competitorId,
+})
+
+//Define createdBy foreign key on brackets table
+Bracket.belongsTo(User, { foreignKey: "createdBy" })
+User.hasMany(Bracket, { foreignKey: "createdBy" })
+
+//Define winner foreign key on brackets table
+Bracket.belongsTo(Competitor, { foreignKey: "winner" })
+Competitor.hasMany(Bracket, {foreignKey: "winner"})
+
+//Define many-to-many relationship between brackets and competitors
+BracketCompetitor.belongsTo(Bracket)
+BracketCompetitor.belongsTo(Competitor)
+Bracket.hasMany(BracketCompetitor)
+Competitor.hasMany(BracketCompetitor)
+
+//Define foreign keys for matches table
+Match.belongsTo(Competitor, { foreignKey: "competitor1" })
+Competitor.hasMany(Match, { foreignKey: "competitor1" })
+Match.belongsTo(Competitor, { foreignKey: "competitor2" })
+Competitor.hasMany(Match, { foreignKey: "competitor2" })
+Match.belongsTo(Competitor, {foreignKey: "winner"})
+Competitor.hasMany(Match, { foreignKey: "winner" })
+
+sequelize.sync({force: true})
+.then(() => {
+  })
+
 const app = express()
 
 // sequelize

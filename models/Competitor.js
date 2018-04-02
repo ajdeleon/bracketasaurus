@@ -1,10 +1,8 @@
-const sequelize = require('/DBConnect.js');
-
-const Bracket = sequelize.define('competitor', {
+const Competitor = sequelize.define('competitor', {
   name: {
-    type: sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
-  description: sequelize.TEXT,
-  ranking: sequelize.INTEGER
+  description: Sequelize.TEXT,
+  ranking: Sequelize.INTEGER
 })

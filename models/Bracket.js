@@ -1,12 +1,10 @@
-const sequelize = require('/DBConnect.js');
-
 const Bracket = sequelize.define('bracket', {
   name: {
-    type: sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   size: {
-    type: sequelize.INTEGER,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       isInt: {
@@ -19,5 +17,11 @@ const Bracket = sequelize.define('bracket', {
       }
     }
   },
-  description: sequelize.TEXT
+  description: Sequelize.TEXT,
+  //createdBy,
+  //winner
 })
+
+module.exports = {
+  Bracket
+}
