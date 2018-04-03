@@ -1,15 +1,15 @@
 <template>
-  <div class="home">
+  <div class="closed">
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'closed',
   data () {
     return {
-      msg: 'You are now logged in!'
+      msg: 'This is the closed page'
     }
   }
 }
@@ -21,8 +21,8 @@ h1, h2 {
   font-weight: normal;
 }
 
-.home {
-  border: 4px solid black;
+.closed {
+  border: 4px solid red;
 }
 
 </style>
