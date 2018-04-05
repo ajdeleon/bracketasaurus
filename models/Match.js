@@ -1,7 +1,6 @@
-const Match = sequelize.define('match', {
-  round: Sequelize.INTEGER
-})
-
-module.exports = {
-  Match
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('match', {
+    round: DataTypes.INTEGER,
+    //winner
+  })
 }

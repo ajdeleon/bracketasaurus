@@ -1,8 +1,10 @@
-const Competitor = sequelize.define('competitor', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  description: Sequelize.TEXT,
-  ranking: Sequelize.INTEGER
-})
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('competitor', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: DataTypes.TEXT,
+    ranking: DataTypes.INTEGER
+  })
+}

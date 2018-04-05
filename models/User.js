@@ -1,3 +1,5 @@
-const User = sequelize.define('user', {
-  googleId: Sequelize.TEXT
-})
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('user', {
+    googleId: DataTypes.TEXT
+  })
+}
