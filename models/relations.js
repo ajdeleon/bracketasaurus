@@ -4,6 +4,7 @@ const Bracket = sequelize.import(__dirname + "/Bracket")
 const BracketCompetitor = sequelize.import(__dirname + "/BracketCompetitor")
 const Competitor = sequelize.import(__dirname + "/Competitor")
 const Match = sequelize.import(__dirname + "/Match")
+const Note = sequelize.import(__dirname + "/Note")
 const User = sequelize.import(__dirname + "/Bracket")
 
 
@@ -29,10 +30,17 @@ Competitor.hasMany(Match, { foreignKey: "competitor2" })
 Match.belongsTo(Competitor, { foreignKey: "winner" })
 Competitor.hasMany(Match, { foreignKey: "winner" })
 
+//Define foreign keys for notes table
+Note.belongsTo(Competitor)
+Competitor.hasMany(Note)
+Note.belongsTo(Match)
+Match.hasMany(Note)
+
 module.exports = {
     Bracket,
     Competitor,
     Match,
+    Note,
     sequelize,
     User,
 }

@@ -12,13 +12,12 @@ const Competitor = relations.Competitor
 const Match = relations.Match
 const User = relations.Bracket
 
+const app = express()
 
 
 sequelize.sync({force: true})
 .then(() => {
   })
-
-const app = express()
 
 sequelize
 .authenticate()
