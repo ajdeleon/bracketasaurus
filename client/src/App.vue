@@ -3,7 +3,7 @@
     <header>
       <ul>
         <li id="logo"><a href="/#/">Bracketasaurus</a></li>
-        <li id="login"><a href="/#/home">Login</a></li>
+        <li id="login"><router-link to="/login">Login</router-link></li>
       </ul>
     </header>
     <main>
@@ -20,7 +20,8 @@ export default {
 
 <style>
 /* #35495e */
-body {
+html, body, main {
+  height: 100%;
   margin: 0;
 }
 
@@ -29,6 +30,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100%;
 }
 
 #login {
@@ -49,7 +51,6 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
 }
 
 header {

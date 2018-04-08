@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <div class="form">
-      <button class="login" v-on:click="login">Login</button>
-      <button class="signUp" v-on:click="signUp">Sign Up</button>
-      <button class="guestLogin" v-on:click="guestLogin">Guest User</button>
+      <router-link class="links" to="/login">Login</router-link>
+      <router-link class="links" to="/signup">Sign Up</router-link>
+      <router-link class="links guestLogin" to="/guest">Guest</router-link>
     </div>
   </div>
 </template>
@@ -49,11 +49,13 @@ h1, h2 {
   padding: 2rem;
 }
 
-.form button {
+.form .links {
+  color: initial;
   font-size: 2rem;
   margin-bottom: 0.5rem;
   border: 1px solid gray;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .guestLogin {

@@ -5,6 +5,9 @@ import Login from '../components/Login'
 import Home from '../components/Home'
 import Current from '../components/Current'
 import Closed from '../components/Closed'
+import Sidebar from '../components/Sidebar'
+import Guest from '../components/Guest'
+import Signup from '../components/Signup'
 
 Vue.use(Router)
 
@@ -34,6 +37,21 @@ export default new Router({
       path: '/closed',
       name: 'Closed',
       component: Closed
+    },
+    {
+      path: '/sidebar',
+      name: 'Sidebar',
+      component: Sidebar
+    },
+    {
+      path: '/guest',
+      name: 'Guest',
+      component: Guest
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
     }
   ]
 })

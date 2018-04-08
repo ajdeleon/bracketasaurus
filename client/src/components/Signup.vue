@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Please log in to continue</h1>
+    <h1>Please sign up to continue</h1>
     <form v-on:submit.prevent="console.log(hey)"class="login">
       <input type=text placeholder="Username or email">
       <input type=text placeholder="Password">
