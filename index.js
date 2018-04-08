@@ -28,7 +28,6 @@ sequelize.sync()
   })
 })
 
-const app = express()
 // require('./routes/authRoutes')(app)
 passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
