@@ -1,13 +1,11 @@
-const express = require('express')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
+const express = require('express')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 const passport = require('passport')
 require('./services/passport')
-const bodyParser = require('body-parser')
+
 const keys = require('./config/keys')
-const Sequelize = require('sequelize')
-//require('./services/passport')
-const GoogleStrategy = require('passport-google-oauth20').Strategy
 
 //All models requires from relations file
 const relations = require('./models/relations')
@@ -23,12 +21,12 @@ const app = express()
 sequelize.sync({force: true})
 .then(() => {
   })
-// sequelize.sync()
-// .then(() => {
-//   User.create({
-//     googleId: 'fjkldffsasdfjklghjkghjdhfgj'
-//   })
-// })
+sequelize.sync()
+.then(() => {
+  User.create({
+    googleId: 'fjkldffsasdfjklghjkghjdhfgj'
+  })
+})
 
 const app = express()
 // require('./routes/authRoutes')(app)
