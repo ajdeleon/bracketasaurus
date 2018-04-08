@@ -1,15 +1,15 @@
 <template>
-  <div class="home">
+  <div class="current">
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'current',
   data () {
     return {
-      msg: 'You are now logged in!'
+      msg: 'This is the current brackets page'
     }
   }
 }
@@ -21,7 +21,7 @@ h1, h2 {
   font-weight: normal;
 }
 
-.home {
+.current {
   border: 4px solid black;
 }
 

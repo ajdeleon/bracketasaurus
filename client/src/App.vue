@@ -2,12 +2,11 @@
   <div id="app">
     <header>
       <ul>
-        <li>Bracketasaurus</li>
-        <li id="login"><a href="">Login</a></li>
+        <li id="logo"><a href="/#/">Bracketasaurus</a></li>
+        <li id="login"><router-link to="/login">Login</router-link></li>
       </ul>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
@@ -21,7 +20,8 @@ export default {
 
 <style>
 /* #35495e */
-body {
+html, body, main {
+  height: 100%;
   margin: 0;
 }
 
@@ -30,6 +30,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100%;
 }
 
 #login {
@@ -37,20 +38,19 @@ body {
   margin-right: 40px;
 }
 
-#login a {
+#login a, #logo a {
   color: #ffffff;
   text-decoration: none;
   transition: color 0.25s;
 }
 
-#login a:hover {
+#login a:hover, #logo a:hover {
   color:#42b883;
   transition: color 0.4s;
 }
 
 main {
   text-align: center;
-  margin-top: 40px;
 }
 
 header {
