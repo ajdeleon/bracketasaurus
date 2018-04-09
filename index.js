@@ -25,20 +25,56 @@ const User = sequelize.define('user', {
 //   })
 // })
 
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then(user => {
+      done(null, user)
+    })
+})
+
 const app = express()
 // require('./routes/authRoutes')(app)
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback',
   proxy: true
-}, (accessToken) => {
-  console.log(accessToken)
-}
-))
+}, async (accessToken, refreshToken, profile, done) => {
+    console.log('access', accessToken)
+    console.log('refresh token', refreshToken)
+    console.log('profile', profile)
+
+    const existingUser = await User.findOne({ where: { googleId: profile.id } })
+
+    if (existingUser) {
+      return done(null, existingUser)
+    }
+
+    const user = await User.create({ googleId: profile.id })
+    done(null, user)
+  })
+)
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 app.get('/auth/google/callback', passport.authenticate('google'))
+app.get('/api/current_user', (req, res) => {
+  res.send(req.user)
+})
 
 // sequelize
 // .authenticate()
