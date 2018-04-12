@@ -29,5 +29,10 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "sequelize": "^4.37.4"
+  },
+  "devDependencies": {
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3"
   }
 }
