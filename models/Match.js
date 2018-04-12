@@ -1,5 +1,6 @@
-const sequelize = require('/DBConnect.js');
-
-const Bracket = sequelize.define('match', {
-  round: sequelize.INTEGER
-})
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('match', {
+    round: DataTypes.INTEGER,
+    //winner
+  })
+}

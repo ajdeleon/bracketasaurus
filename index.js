@@ -1,29 +1,21 @@
-const express = require('express')
-const cookieSession = require('cookie-session')
-const passport = require('passport')
 const bodyParser = require('body-parser')
-const keys = require('./config/keys')
-const Sequelize = require('sequelize')
-//require('./services/passport')
+const cookieSession = require('cookie-session')
+const express = require('express')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const passport = require('passport')
+//require('./services/passport')
+const sequelize = require('sequelize')
+const keys = require('./config/keys')
 
-const sequelize = new Sequelize(keys.dbname, keys.dbuser, keys.dbpassword, {
-  dialect: 'mysql',
-  host: "127.0.0.1",
-  port: 3306,
-  operatorsAliases: false,
-})
+//All models requires from relations file
+// const relations = require('./models/relations')
+// const sequelize = relations.sequelize
+// const Bracket = relations.Bracket
+// const Competitor = relations.Competitor
+// const Match = relations.Match
+// const User = relations.Bracket
 
-const User = sequelize.define('user', {
-  googleId: Sequelize.TEXT
-})
-
-// sequelize.sync()
-// .then(() => {
-//   User.create({
-//     googleId: 'fjkldffsasdfjklghjkghjdhfgj'
-//   })
-// })
+const app = express()
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -36,7 +28,16 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-const app = express()
+// sequelize.sync({force: true})
+// .then(() => {
+//   })
+// sequelize.sync()
+// .then(() => {
+//   User.create({
+//     googleId: 'fjkldffsasdfjklghjkghjdhfgj'
+//   })
+// })
+
 // require('./routes/authRoutes')(app)
 
 app.use(
@@ -75,15 +76,19 @@ app.get('/auth/google/callback', passport.authenticate('google'))
 app.get('/api/current_user', (req, res) => {
   res.send(req.user)
 })
+app.get('/api/logout', (req, res) => {
+  req.logout()
+  res.send(req.user)
+})
 
-// sequelize
-// .authenticate()
-// .then(() => {
-//   console.log('Connection has been established successfully.');
-// })
-// .catch(err => {
-//   console.error('Unable to connect to the database:', err);
-// });
+sequelize
+.authenticate()
+.then(() => {
+  console.log('Connection has been established successfully.');
+})
+.catch(err => {
+  console.error('Unable to connect to the database:', err);
+});
 
 app.get('/', (req, res) => res.send('Hello World!'))
 

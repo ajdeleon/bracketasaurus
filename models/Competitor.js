@@ -1,10 +1,10 @@
-const sequelize = require('/DBConnect.js');
-
-const Bracket = sequelize.define('competitor', {
-  name: {
-    type: sequelize.STRING,
-    allowNull: false
-  },
-  description: sequelize.TEXT,
-  ranking: sequelize.INTEGER
-})
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('competitor', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: DataTypes.TEXT,
+    ranking: DataTypes.INTEGER
+  })
+}

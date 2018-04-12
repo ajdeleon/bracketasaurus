@@ -1,5 +1,5 @@
-const sequelize = require('/DBConnect.js');
-
-const User = sequelize.define('user', {
-  googleId: sequelize.TEXT
-})
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('user', {
+    googleId: DataTypes.TEXT
+  })
+}
