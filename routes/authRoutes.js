@@ -8,12 +8,16 @@ module.exports = app => {
   }))
 
   app.get('/api/current_user', (req, res) => {
-    res.send('User id: ' + req.user.id + ' is now logged in!')
+    if (req.user) {
+      res.send('User id: ' + req.user.id + ' is now logged in!')
+    } else {
+      res.send('No user is currently signed in.')
+    }
   })
 
   app.get('/api/logout', (req, res) => {
     req.logout()
-    res.send(req.user)
+    res.send(req.user + 'Successfully logged out.')
   })
 
 }
