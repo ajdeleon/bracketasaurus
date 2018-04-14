@@ -4,3 +4,4 @@ npm-debug.log*
 dev.js
 models/DBConnect.js
 local.js
+*.sw?
