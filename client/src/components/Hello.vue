@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <div class="form">
-      <router-link class="links" to="/login">Login</router-link>
+      <router-link class="links" to="/auth/google">Login</router-link>
       <router-link class="links" to="/signup">Sign Up</router-link>
       <router-link class="links guestLogin" to="/guest">Guest</router-link>
     </div>
