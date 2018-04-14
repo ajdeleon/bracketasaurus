@@ -29,7 +29,13 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    //change according to http://vuejs-templates.github.io/webpack/proxy.html
+    proxyTable: {
+      '/auth/google': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
